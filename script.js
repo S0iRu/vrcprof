@@ -1,9 +1,4 @@
-// Initialize AOS (Animate On Scroll)
-AOS.init({
-    duration: 1000,
-    once: true,
-    offset: 100
-});
+
 
 // Hamburger Menu Toggle
 const hamburger = document.querySelector('.hamburger');
@@ -157,3 +152,95 @@ function animateParticles() {
 
 initParticles();
 animateParticles();
+
+// --- Reference Site Cursor Implementation ---
+
+const cursorGlow = document.querySelector('.cursor-glow');
+const interactables = document.querySelectorAll('a, button, .gallery-item, .world-card');
+
+// Cursor State
+let mouse = { x: -100, y: -100 }; // Start off-screen
+let cursor = { x: -100, y: -100 };
+let hue = 0;
+
+// Update mouse position
+document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+
+    // Create trail particles on move
+    if (Math.random() < 0.8) { // Increased density
+        createParticle(mouse.x, mouse.y);
+    }
+});
+
+// Animation Loop
+function updateCursor() {
+    // Smooth follow (Lerp)
+    cursor.x += (mouse.x - cursor.x) * 0.04;
+    cursor.y += (mouse.y - cursor.y) * 0.04;
+
+    // Update color (Hue Cycle)
+    hue = (hue + 1) % 360;
+    const color = `hsla(${hue}, 80%, 60%, 0.5)`;
+
+    // Apply styles
+    cursorGlow.style.left = cursor.x + 'px';
+    cursorGlow.style.top = cursor.y + 'px';
+    cursorGlow.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+
+    requestAnimationFrame(updateCursor);
+}
+updateCursor();
+
+// Particle System
+function createParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    document.body.appendChild(particle);
+
+    // Randomize particle props
+    const size = Math.random() * 4 + 2;
+    const color = `hsl(${hue}, 100%, 70%)`;
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 30 + 10;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+
+    particle.style.width = size + 'px';
+    particle.style.height = size + 'px';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    particle.style.background = color;
+    particle.style.setProperty('--tx', tx + 'px');
+    particle.style.setProperty('--ty', ty + 'px');
+
+    // Remove after animation
+    setTimeout(() => {
+        particle.remove();
+    }, 1000);
+}
+
+// Click Effect
+document.addEventListener('click', (e) => {
+    // Burst particles
+    for (let i = 0; i < 12; i++) {
+        createParticle(e.clientX, e.clientY);
+    }
+
+    // Scale effect
+    cursorGlow.style.transform = 'translate(-50%, -50%) scale(0.8)';
+    setTimeout(() => {
+        cursorGlow.style.transform = 'translate(-50%, -50%) scale(1)';
+    }, 100);
+});
+
+// Hover Interactions
+interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+        cursorGlow.classList.add('active');
+    });
+    el.addEventListener('mouseleave', () => {
+        cursorGlow.classList.remove('active');
+    });
+});
