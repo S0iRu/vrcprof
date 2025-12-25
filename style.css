@@ -15,12 +15,14 @@
 
     /* Typography */
     --font-heading: 'M PLUS Rounded 1c', sans-serif;
-    /* Pop Style for Logo/Headings */
-    --font-cyber: 'M PLUS Rounded 1c', sans-serif;
-    /* Replaced with Pop */
-    --font-pop: 'M PLUS Rounded 1c', sans-serif;
-    --font-body: 'M PLUS Rounded 1c', sans-serif;
-    /* Pop Style for Body */
+    /* Pop Style for Logo/Headings - Wait, user asked to change 'About Me' text font which is body/pop. Let's change the pop font variable. */
+    --font-heading-script: 'Courgette', cursive;
+    --font-script-hero: 'Great Vibes', cursive;
+
+    --font-pop: 'Zen Maru Gothic', sans-serif;
+    /* New Stylish Pop Font */
+    --font-body: 'Zen Maru Gothic', sans-serif;
+    /* Use it for body too */
 
     /* Spacing */
     --container-width: 1100px;
@@ -385,11 +387,14 @@ ul {
 }
 
 .subtitle {
-    font-family: 'Courgette', cursive;
+    font-family: var(--font-pop);
+    /* Use Zen Maru Gothic */
     font-size: 1.3rem;
     color: var(--text-secondary);
     margin-bottom: 2rem;
     letter-spacing: 1px;
+    font-weight: 500;
+    /* Zen Maru looks good with slight weight */
 }
 
 .hero-buttons {
@@ -430,13 +435,12 @@ ul {
 }
 
 .about-content p {
-    font-size: 1.5rem;
-    /* Larger for impact */
+    font-size: 1.25rem;
+    /* Reduced size */
     font-weight: 700;
-    /* Bold to emphasize rounded shape */
     margin-bottom: 3rem;
     color: var(--text-primary);
-    line-height: 2;
+    line-height: 1.8;
 }
 
 .stats {
