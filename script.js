@@ -132,27 +132,13 @@ function animateParticles() {
         particles[i].update();
         particles[i].draw();
 
-        // Draw connections
-        for (let j = i; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
 
-            if (distance < connectionDistance) {
-                ctx.strokeStyle = `rgba(88, 166, 255, ${1 - distance / connectionDistance})`;
-                ctx.lineWidth = 0.5;
-                ctx.beginPath();
-                ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.stroke();
-            }
-        }
     }
-    requestAnimationFrame(animateParticles);
+    // requestAnimationFrame(animateParticles);
 }
 
-initParticles();
-animateParticles();
+// initParticles();
+// animateParticles();
 
 // --- Reference Site Cursor Implementation ---
 

@@ -463,7 +463,7 @@ ul {
 }
 
 .gallery-item {
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
     background: var(--glass-bg);
     border: var(--glass-border);
     border-radius: 12px;
@@ -482,6 +482,17 @@ ul {
 
 .gallery-item:hover {
     border-color: var(--accent-color);
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover .gallery-img {
+    transform: scale(1.05);
 }
 
 .placeholder-img {
