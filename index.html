@@ -2,24 +2,31 @@
 <html lang="ja">
 
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Orbitron:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+<link rel="icon" href="icon.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+<!-- Font Awesome 6 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <div class="background-glow"></div>
+    <div class="background-glow">
+        <canvas id="bg-particles"></canvas>
+    </div>
 
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">VRC<span>Profile</span></a>
+            <a href="#" class="logo">S0iRu<span>Profile</span></a>
             <ul class="nav-links">
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#about">プロフィール</a></li>
-                <li><a href="#gallery">ギャラリー</a></li>
-                <li><a href="#worlds">ワールド</a></li>
-                <li><a href="#contact">リンク</a></li>
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">PROFILE</a></li>
+                <li><a href="#gallery">GALLERY</a></li>
+                <li><a href="#worlds">WORLDS</a></li>
+                <li><a href="#contact">LINKS</a></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -28,62 +35,47 @@
     </nav>
 
     <header id="home" class="hero">
-        <div class="container hero-content">
-            <div class="hero-text" data-aos="fade-right">
-                <h1>こんにちは、<span class="highlight">User Name</span> です</h1>
-                <p class="subtitle">VRChat 写真家 & ワールド探検家</p>
+        <div class="container hero-content scroll-reveal">
+            <div class="hero-text">
+                <h1><span class="highlight">S0iRu</span></h1>
+                <p class="subtitle">CITIZEN OF VIRTUAL REALITY</p>
                 <div class="hero-buttons">
-                    <a href="#gallery" class="btn btn-primary">ギャラリーを見る</a>
+                    <a href="#gallery" class="btn btn-primary">GALLERY</a>
                     <a href="https://vrchat.com/home/user/usr_xxxxxxxx" target="_blank"
-                        class="btn btn-secondary">フレンド申請</a>
+                        class="btn btn-secondary">FRIEND</a>
                 </div>
             </div>
-            <div class="hero-image" data-aos="fade-left">
-                <!-- Placeholder for Avatar Image -->
-                <div class="avatar-placeholder">
-                    <i class="fas fa-user-astronaut"></i>
-                </div>
+            <div class="hero-image">
+                <img src="icon.png" alt="Avatar" class="avatar-img">
             </div>
         </div>
     </header>
 
     <section id="about" class="section about">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">About Me</h2>
-            <div class="about-content glass-card" data-aos="fade-up" data-aos-delay="100">
-                <p>VRChatの世界で活動している [User Name] です。主に写真撮影や美しいワールド巡りをしています。<br>Join歓迎ですので、見かけたら気軽に声をかけてください！</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">プレイ時間</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">アバター</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">Trust</span>
-                        <span class="stat-label">ランク</span>
-                    </div>
-                </div>
+        <div class="container scroll-reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content glass-card">
+                <p>Inhabitant of the Virtual Realm.<br>
+                    仮想の世界で、呼吸する。<br>
+                    Exploring the boundaries of reality.</p>
             </div>
         </div>
     </section>
 
     <section id="gallery" class="section gallery">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Gallery</h2>
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Gallery</h2>
             <div class="gallery-grid">
-                <div class="gallery-item" data-aos="zoom-in">
+                <div class="gallery-item">
                     <div class="placeholder-img">写真 1</div>
                 </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <div class="gallery-item">
                     <div class="placeholder-img">写真 2</div>
                 </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <div class="gallery-item">
                     <div class="placeholder-img">写真 3</div>
                 </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="gallery-item">
                     <div class="placeholder-img">写真 4</div>
                 </div>
             </div>
@@ -91,20 +83,20 @@
     </section>
 
     <section id="worlds" class="section worlds">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Favorite Worlds</h2>
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Favorite Worlds</h2>
             <div class="worlds-grid">
-                <div class="world-card glass-card" data-aos="flip-left">
+                <div class="world-card glass-card">
                     <div class="world-img-placeholder"></div>
                     <h3>Cozy Apartment</h3>
                     <p>睡眠 / 雑談</p>
                 </div>
-                <div class="world-card glass-card" data-aos="flip-left" data-aos-delay="100">
+                <div class="world-card glass-card">
                     <div class="world-img-placeholder"></div>
                     <h3>Cyberpunk City</h3>
                     <p>景観 / ロールプレイ</p>
                 </div>
-                <div class="world-card glass-card" data-aos="flip-left" data-aos-delay="200">
+                <div class="world-card glass-card">
                     <div class="world-img-placeholder"></div>
                     <h3>Particle Live</h3>
                     <p>音楽 / パーティクル</p>
@@ -114,23 +106,39 @@
     </section>
 
     <section id="contact" class="section contact">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Connect</h2>
-            <div class="social-links" data-aos="fade-up" data-aos-delay="100">
-                <a href="#" class="social-btn twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" class="social-btn discord"><i class="fab fa-discord"></i></a>
-                <a href="#" class="social-btn youtube"><i class="fab fa-youtube"></i></a>
+        <div class="container scroll-reveal">
+            <h2 class="section-title">Connect</h2>
+            <div class="social-links-grid">
+                <a href="https://twitter.com/S0iRu_VR" target="_blank" class="link-btn" aria-label="X / Twitter">
+                    <i class="fa-brands fa-x-twitter"></i> <span>X / Twitter</span>
+                </a>
+                <a href="https://vrchat.com/home/user/usr_xxxxxxxx" target="_blank" class="link-btn"
+                    aria-label="VRChat">
+                    <i class="fa-solid fa-vr-cardboard"></i> <span>VRChat</span>
+                </a>
+                <a href="#" target="_blank" class="link-btn" aria-label="Discord">
+                    <i class="fa-brands fa-discord"></i> <span>Discord</span>
+                </a>
+                <a href="https://note.com/s0iru" target="_blank" class="link-btn" aria-label="Note">
+                    <i class="fa-solid fa-note-sticky"></i> <span>Note</span>
+                </a>
+                <a href="https://www.youtube.com/@S0iRu" target="_blank" class="link-btn" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i> <span>YouTube</span>
+                </a>
+                <a href="#" target="_blank" class="link-btn" aria-label="Steam">
+                    <i class="fa-brands fa-steam"></i> <span>Steam</span>
+                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 VRChat Profile. Created with Antigravity.</p>
+            <p>&copy; 2025 S0iRu. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <div class="cursor-glow"></div>
     <script src="script.js"></script>
 </body>
 
