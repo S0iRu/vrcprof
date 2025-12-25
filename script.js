@@ -96,25 +96,37 @@ class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * moveSpeed;
-        this.vy = (Math.random() - 0.5) * moveSpeed;
-        this.size = Math.random() * 2 + 1;
+        this.size = Math.random() * 5 + 3; // Slightly larger for petals
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 + 0.5; // Fall collision
+        this.angle = Math.random() * 360;
+        this.spin = Math.random() * 2 - 1;
     }
 
     update() {
-        this.x += this.vx;
-        this.y += this.vy;
+        this.y += this.speedY;
+        this.x += Math.sin(this.y * 0.01) * 0.5 + this.speedX; // Sway motion
+        this.angle += this.spin;
 
-        // Bounce off edges
-        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        // Reset if goes off screen
+        if (this.y > canvas.height) {
+            this.y = -10;
+            this.x = Math.random() * canvas.width;
+        }
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
     }
 
     draw() {
-        ctx.fillStyle = 'rgba(88, 166, 255, 0.3)';
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle * Math.PI / 180);
+        ctx.fillStyle = 'rgba(255, 183, 197, 0.6)'; // Sakura pink
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        // Draw petal shape (ellipse-ish)
+        ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
         ctx.fill();
+        ctx.restore();
     }
 }
 
@@ -131,8 +143,6 @@ function animateParticles() {
     for (let i = 0; i < particles.length; i++) {
         particles[i].update();
         particles[i].draw();
-
-
     }
     requestAnimationFrame(animateParticles);
 }
@@ -167,9 +177,8 @@ function updateCursor() {
     cursor.x += (mouse.x - cursor.x) * 0.04;
     cursor.y += (mouse.y - cursor.y) * 0.04;
 
-    // Update color (Hue Cycle)
-    hue = (hue + 1) % 360;
-    const color = `hsla(${hue}, 80%, 60%, 0.5)`;
+    // Fixed Sakura Color (Pink)
+    const color = `rgba(255, 145, 194, 0.5)`; // Matching accent-glow
 
     // Apply styles
     cursorGlow.style.left = cursor.x + 'px';
@@ -187,20 +196,26 @@ function createParticle(x, y) {
     document.body.appendChild(particle);
 
     // Randomize particle props
-    const size = Math.random() * 4 + 2;
-    const color = `hsl(${hue}, 100%, 70%)`;
+    const size = Math.random() * 6 + 4; // Larger for petals
+    // Mix of pinks for depth
+    const colors = ['#ff91c2', '#ffb7d5', '#ffd1e1', '#fff0f5'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
     const angle = Math.random() * Math.PI * 2;
-    const velocity = Math.random() * 30 + 10;
+    const velocity = Math.random() * 20 + 5; // Slower, drifting feel
     const tx = Math.cos(angle) * velocity;
     const ty = Math.sin(angle) * velocity;
+    const rotation = Math.random() * 360;
 
     particle.style.width = size + 'px';
     particle.style.height = size + 'px';
     particle.style.left = x + 'px';
     particle.style.top = y + 'px';
     particle.style.background = color;
+    particle.style.transform = `rotate(${rotation}deg)`; // Initial rotation
     particle.style.setProperty('--tx', tx + 'px');
     particle.style.setProperty('--ty', ty + 'px');
+    particle.style.setProperty('--rot', (rotation + 180) + 'deg'); // Target rotation
 
     // Remove after animation
     setTimeout(() => {
